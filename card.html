@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card JS - Social Cards</title>
+    <title>Create Your Card - Card JS</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,125 +13,206 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        .logo {
-            font-size: 48px;
-            font-weight: 600;
-            text-align: center;
-            color: #ffffff;
-            margin-top: 50px;
-        }
-
-        .logo span {
-            color: #00b8ff;
-        }
-
-        .get-own-link {
-            display: block;
-            text-align: center;
-            font-size: 14px;
-            color: #aaaaaa;
-            margin-top: 10px;
-            text-decoration: none;
-        }
-
-        .get-own-link:hover {
-            color: #00b8ff;
-            transition: color 0.3s;
-        }
-
-        .profile-cards-section {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 50px 20px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .profile-card {
-            background-color: #2c2c2c;
-            width: 250px;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 20px;
-            border-radius: 15px;
+            background-color: #1e1e1e;
+        }
+
+        header .logo {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        header .logo span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        header .nav-button {
+            background-color: #00b8ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        header .nav-button:hover {
+            background-color: #0093cc;
+        }
+
+        .main-content {
+            flex: 1;
             text-align: center;
+            padding: 20px 20px;
+        }
+
+        .main-content h1 {
+            font-size: 60px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .main-content h1 span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        .form-container {
+            background-color: #2c2c2c;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .profile-card h3 {
-            font-size: 22px;
-            color: #00b8ff;
-            margin: 10px 0;
-        }
-
-        .profile-card p {
+        .form-container label {
+            display: block;
+            text-align: left;
             font-size: 16px;
-            color: #aaaaaa;
+            margin-bottom: 8px;
         }
 
-        .followers {
-            font-size: 14px;
-            color: #aaaaaa;
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            background-color: #1e1e1e;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .followers .count {
-            color: #00b8ff;
+        .cta-button {
+            background-color: #00b8ff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
             font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
         }
 
-        .followers .text {
-            color: #aaaaaa;
-            margin-left: 5px;
+        .cta-button:hover {
+            background-color: #0093cc;
         }
+
+        .cta-text {
+            font-size: 12px;
+            color: #aaaaaa;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: #aaa;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .card-info-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Logo and Link Section -->
-    <div class="logo">
-        Card <span>JS</span>
-    </div>
-    <a href="/new" class="get-own-link">GET YOUR OWN!</a>
+    <header>
+        <div class="logo">
+            Card <span>JS</span>
+        </div>
+        <a href="/"><button class="nav-button">Get Card</button></a>
+    </header>
 
-    <!-- Profile Cards Section -->
-    <div class="profile-cards-section">
-        <!-- This will be populated by JS -->
+    <div class="main-content">
+        <h1>Create Your Card with <span>Card JS</span></h1>
+        <p>Fill out the form below to create your personalized social card. It's quick, easy, and free!</p>
+
+        <div class="form-container">
+            <!-- Card Info Header -->
+            <div class="card-info-header">Card Info</div>
+
+            <form id="create-card-form">
+                <!-- Name Input -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <!-- Bio Input -->
+                <label for="bio">Bio (Max 150 Characters):</label>
+                <textarea id="bio" name="bio" maxlength="150" placeholder="Enter your bio" required></textarea>
+
+                <!-- Followers Input -->
+                <label for="followers">Total Followers:</label>
+                <input type="number" id="followers" name="followers" placeholder="Enter total followers" required>
+
+                <!-- Submit Button -->
+                <button type="submit" class="cta-button">Create Card</button>
+            </form>
+            <div class="cta-text">No payment required*</div>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2024 Card JS. All rights reserved.
+    </footer>
 
     <script>
-        // Function to extract URL parameters
-        function getURLParams(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
+        // Function to abbreviate the follower count
+        function abbreviateNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M'; // For millions
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K'; // For thousands
+            } else {
+                return num; // For smaller numbers
+            }
         }
 
-        // Function to display profile cards based on URL parameters
-        function displayCards() {
-            const name = getURLParams('name');
-            const followers = getURLParams('followers');
-            const bio = getURLParams('bio');
-            
-            // Create the profile card HTML dynamically
-            const profileCardHTML = `
-                <div class="profile-card">
-                    <h3>${name ? name : 'Default Name'}</h3>
-                    <p>${bio ? bio : 'Default Bio'}</p>
-                    <div class="followers">
-                        <span class="count">${followers ? followers : '0'}</span><span class="text">Followers</span>
-                    </div>
-                </div>
-            `;
+        // Handle form submission
+        document.getElementById("create-card-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-            // Inject the generated card into the cards section
-            document.querySelector('.profile-cards-section').innerHTML = profileCardHTML;
-        }
+            const formData = new FormData(event.target);
 
-        // Run the function when the page loads
-        window.onload = displayCards;
+            // Get the form values
+            const name = formData.get("name");
+            const bio = formData.get("bio");
+            let followers = formData.get("followers");
+
+            // Abbreviate the followers count
+            followers = abbreviateNumber(followers);
+
+            // Redirect to the /card page with the form data in the URL
+            window.location.href = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(followers)}`;
+        });
     </script>
 
 </body>
