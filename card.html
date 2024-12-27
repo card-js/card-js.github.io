@@ -18,44 +18,32 @@
             min-height: 100vh;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #1e1e1e;
-        }
-
-        header .logo {
-            font-size: 30px;
-            font-weight: 600;
-        }
-
-        header .logo span {
-            color: #00b8ff; /* Electric blue */
-        }
-
-        header .nav-button {
-            background-color: #00b8ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        header .nav-button:hover {
-            background-color: #0093cc;
-        }
-
         .main-content {
             flex: 1;
             text-align: center;
             padding: 20px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        .get-own-card {
+            font-size: 14px;
+            color: #aaaaaa;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .get-own-card:hover {
+            color: #00b8ff; /* Blue color when hovered */
         }
 
         .card {
@@ -99,16 +87,13 @@
 </head>
 <body>
 
-    <!-- Header Section with Logo and Navigation -->
-    <header>
+    <!-- Logo and Link to Get Own Card -->
+    <div class="main-content">
         <div class="logo">
             Card <span>JS</span>
         </div>
-        <a href="/new"><button class="nav-button">Get Card</button></a>
-    </header>
+        <a href="/new" class="get-own-card">Get Your Own Card!</a>
 
-    <!-- Main Content -->
-    <div class="main-content">
         <div class="card">
             <h2 id="name">John Doe</h2>
             <p id="bio">Web Developer | Tech Enthusiast | Blogger</p>
@@ -118,7 +103,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         &copy; 2024 Card JS. All rights reserved.
     </footer>
@@ -150,7 +134,6 @@
             const abbreviatedFollowers = abbreviateNumber(parseInt(followersCount));
             document.getElementById('followers-count').textContent = abbreviatedFollowers;
         }
-
     </script>
 
 </body>
