@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Your Card - Card JS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Your Card - Card JS</title>
     <style>
         body {
             background-color: #121212;
@@ -13,187 +12,85 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensures the body takes up the full viewport height */
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #1e1e1e;
-        }
-
-        header .logo {
-            font-size: 30px;
-            font-weight: 600;
-        }
-
-        header .logo span {
-            color: #00b8ff; /* Electric blue */
-        }
-
-        header .nav-button {
-            background-color: #00b8ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        header .nav-button:hover {
-            background-color: #0093cc;
         }
 
         .main-content {
-            flex: 1; /* Makes sure the main content fills the available space */
             text-align: center;
-            padding: 20px 20px;
+            padding: 40px;
         }
 
-        .main-content h1 {
-            font-size: 60px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .main-content h1 span {
-            color: #00b8ff; /* Electric blue */
-        }
-
-        .form-container {
+        .profile-card {
             background-color: #2c2c2c;
             padding: 30px;
             border-radius: 10px;
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             margin: 0 auto;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .form-container label {
-            display: block;
-            text-align: left;
-            font-size: 16px;
-            margin-bottom: 8px;
+        .profile-card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
         }
 
-        .form-container input, .form-container textarea {
-            width: 100%;
-            padding: 15px; /* Increased padding for taller inputs */
-            margin: 12px 0; /* Added margin for spacing between fields */
-            background-color: #1e1e1e;
-            color: #fff;
-            border: 1px solid #333;
-            border-radius: 10px; /* More rounded corners */
-            font-size: 16px;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif; /* Added font family here */
-        }
-
-        .cta-button {
-            background-color: #00b8ff;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-family: 'Poppins', sans-serif;
+        .profile-card h2 {
+            font-size: 28px;
             font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
+            color: #fff;
             margin-top: 20px;
-            transition: background-color 0.3s;
         }
 
-        .cta-button:hover {
-            background-color: #0093cc;
-        }
-
-        .cta-text {
-            font-size: 12px;
-            color: #aaaaaa;
+        .profile-card p {
+            font-size: 16px;
+            color: #ccc;
             margin-top: 10px;
         }
 
-        footer {
-            background-color: #1e1e1e;
-            color: #aaa;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 14px;
-            width: 100%;
-            box-sizing: border-box;
-            position: relative; /* Ensure it's not absolute or fixed */
+        .profile-card .followers {
+            font-size: 18px;
+            color: #fff;
+            margin-top: 10px;
         }
 
+        .followers span {
+            color: #00b8ff; /* Electric blue */
+        }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="logo">
-            Card <span>JS</span>
-        </div>
-        <a href="/"><button class="nav-button">Home</button></a>
-    </header>
-
     <div class="main-content">
-        <h1>Create Your Card with <span>Card JS</span></h1>
-        <p>Fill out the form below to create your personalized social card. It's quick, easy, and free!</p>
+        <div class="profile-card">
+            <!-- Profile Image -->
+            <img src="" alt="Profile Image" id="profile-img">
 
-        <div class="form-container">
-            <form id="create-card-form">
-                <!-- Profile Image URL Input -->
-                <label for="profile-image">Profile Image URL:</label>
-                <input type="url" id="profile-image" name="profile-image" placeholder="Enter a direct image URL" required>
+            <!-- Name -->
+            <h2 id="profile-name"></h2>
 
-                <!-- Name Input -->
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <!-- Bio -->
+            <p id="profile-bio"></p>
 
-                <!-- Bio Input -->
-                <label for="bio">Bio (Max 150 Characters):</label>
-                <textarea id="bio" name="bio" maxlength="150" placeholder="Enter your bio" required></textarea>
-
-                <!-- Followers Input -->
-                <label for="followers">Total Followers:</label>
-                <input type="number" id="followers" name="followers" placeholder="Enter total followers" required>
-
-                <!-- Submit Button -->
-                <button type="submit" class="cta-button">Create Card</button>
-            </form>
-            <div class="cta-text">No payment required*</div>
+            <!-- Followers -->
+            <p class="followers" id="profile-followers"><span id="followers-count"></span> Followers</p>
         </div>
     </div>
 
-    <footer>
-        &copy; 2024 Card JS. All rights reserved.
-    </footer>
-
     <script>
-        // Handle form submission
-        document.getElementById("create-card-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+        // Parse URL parameters to get user data
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get("name");
+        const bio = urlParams.get("bio");
+        const followers = urlParams.get("followers");
+        const image = urlParams.get("image");
 
-            const formData = new FormData(event.target);
-
-            // Get the form values
-            const profileImage = formData.get("profile-image");
-            const name = formData.get("name");
-            const bio = formData.get("bio");
-            const followers = formData.get("followers");
-
-            // Redirect to the /card page with the form data in the URL
-            window.location.href = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(followers)}&image=${encodeURIComponent(profileImage)}`;
-        });
+        // Set profile data
+        document.getElementById("profile-name").textContent = name;
+        document.getElementById("profile-bio").textContent = bio;
+        document.getElementById("profile-followers").textContent = followers;
+        document.getElementById("followers-count").textContent = followers >= 1000 ? (followers / 1000).toFixed(1) + "K" : followers; // Format followers
+        document.getElementById("profile-img").src = image; // Set profile image URL
     </script>
-
 </body>
 </html>
