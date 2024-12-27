@@ -35,14 +35,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .card img {
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
         .card h2 {
             font-size: 32px;
             margin-bottom: 10px;
@@ -75,9 +67,8 @@
 
     <div class="main-content">
         <div class="card">
-            <img src="profile-image-url.jpg" alt="Profile Picture">
-            <h2>John Doe</h2>
-            <p>Web Developer | Tech Enthusiast | Blogger</p>
+            <h2 id="name">John Doe</h2>
+            <p id="bio">Web Developer | Tech Enthusiast | Blogger</p>
             <div class="followers">
                 <span id="followers-count">0</span> Followers
             </div>
@@ -100,12 +91,22 @@
             }
         }
 
-        // Example: Get the follower count from URL params or any data source
-        const followersCount = 12500; // You can replace this with dynamic data
-        const abbreviatedFollowers = abbreviateNumber(followersCount);
+        // Get the parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const bio = urlParams.get('bio');
+        const followersCount = urlParams.get('followers');
 
-        // Display the abbreviated follower count
-        document.getElementById("followers-count").textContent = abbreviatedFollowers;
+        // Set the values dynamically
+        if (name) document.getElementById('name').textContent = name;
+        if (bio) document.getElementById('bio').textContent = bio;
+
+        // Abbreviate and set the follower count
+        if (followersCount) {
+            const abbreviatedFollowers = abbreviateNumber(parseInt(followersCount));
+            document.getElementById('followers-count').textContent = abbreviatedFollowers;
+        }
+
     </script>
 
 </body>
