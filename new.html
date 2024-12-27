@@ -13,9 +13,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            min-height: 100vh; /* Ensure the body takes up full viewport height */
             display: flex;
             flex-direction: column;
+            min-height: 100vh; /* Ensures the body takes up the full viewport height */
         }
 
         header {
@@ -53,9 +53,9 @@
         }
 
         .main-content {
+            flex: 1; /* Makes sure the main content fills the available space */
             text-align: center;
-            padding: 20px 20px; /* Adjusted padding */
-            flex: 1; /* Ensures the content takes up the available space */
+            padding: 20px 20px;
         }
 
         .main-content h1 {
@@ -128,11 +128,9 @@
             padding: 20px 0;
             text-align: center;
             font-size: 14px;
-            position: absolute;
-            bottom: 0;
             width: 100%;
-            left: 0;
             box-sizing: border-box;
+            position: relative; /* Ensure it's not absolute or fixed */
         }
 
     </style>
