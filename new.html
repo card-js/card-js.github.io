@@ -13,6 +13,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            min-height: 100vh; /* Ensure the body takes up full viewport height */
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -52,6 +55,7 @@
         .main-content {
             text-align: center;
             padding: 20px 20px; /* Adjusted padding */
+            flex: 1; /* Ensures the content takes up the available space */
         }
 
         .main-content h1 {
@@ -94,36 +98,6 @@
             font-family: 'Poppins', sans-serif; /* Added font family here */
         }
 
-        .form-container input[type="file"] {
-            padding: 12px;
-            border: 1px solid #333;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif; /* Added font family here for consistency */
-        }
-
-        .form-container input[type="file"]::-webkit-file-upload-button {
-            background-color: #00b8ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif; /* Ensured font consistency */
-        }
-
-        .form-container input[type="file"]::-webkit-file-upload-button:hover {
-            background-color: #0093cc;
-        }
-
-        .form-container textarea {
-            resize: vertical;
-            max-height: 150px;
-        }
-
         .cta-button {
             background-color: #00b8ff;
             color: #fff;
@@ -154,6 +128,11 @@
             padding: 20px 0;
             text-align: center;
             font-size: 14px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            box-sizing: border-box;
         }
 
     </style>
@@ -172,10 +151,10 @@
         <p>Fill out the form below to create your personalized social card. It's quick, easy, and free!</p>
 
         <div class="form-container">
-            <form action="/submit-card" method="POST" enctype="multipart/form-data">
-                <!-- Profile Image Input -->
-                <label for="profile-image">Profile Image:</label>
-                <input type="file" id="profile-image" name="profile-image" accept="image/*" required>
+            <form id="create-card-form">
+                <!-- Profile Image URL Input -->
+                <label for="profile-image">Profile Image URL:</label>
+                <input type="url" id="profile-image" name="profile-image" placeholder="Enter a direct image URL" required>
 
                 <!-- Name Input -->
                 <label for="name">Name:</label>
@@ -190,7 +169,7 @@
                 <input type="number" id="followers" name="followers" placeholder="Enter total followers" required>
 
                 <!-- Submit Button -->
-                <button type="button" class="cta-button" onclick="createCard()">Create Card</button>
+                <button type="submit" class="cta-button">Create Card</button>
             </form>
             <div class="cta-text">No payment required*</div>
         </div>
@@ -201,42 +180,21 @@
     </footer>
 
     <script>
-        function createCard() {
-            // Get form data
-            let name = document.getElementById('name').value;
-            let bio = document.getElementById('bio').value;
-            let followers = document.getElementById('followers').value;
-            let fileInput = document.getElementById('profile-image');
-            let profileImage = fileInput.files[0];
+        // Handle form submission
+        document.getElementById("create-card-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-            // Convert the profile image to base64
-            let reader = new FileReader();
-            reader.onloadend = function () {
-                let base64Image = reader.result;
+            const formData = new FormData(event.target);
 
-                // Format followers to 0.0K+ or 0.0M+
-                let formattedFollowers = formatFollowers(followers);
+            // Get the form values
+            const profileImage = formData.get("profile-image");
+            const name = formData.get("name");
+            const bio = formData.get("bio");
+            const followers = formData.get("followers");
 
-                // Create the URL with the data
-                let cardUrl = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(formattedFollowers)}&image=${encodeURIComponent(base64Image)}`;
-
-                // Redirect to the card page
-                window.location.href = cardUrl;
-            };
-            if (profileImage) {
-                reader.readAsDataURL(profileImage);
-            }
-        }
-
-        function formatFollowers(followers) {
-            let formatted = parseFloat(followers);
-            if (formatted >= 1000000) {
-                return (formatted / 1000000).toFixed(1) + 'M+';
-            } else if (formatted >= 1000) {
-                return (formatted / 1000).toFixed(1) + 'K+';
-            }
-            return formatted;
-        }
+            // Redirect to the /card page with the form data in the URL
+            window.location.href = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(followers)}&image=${encodeURIComponent(profileImage)}`;
+        });
     </script>
 
 </body>
