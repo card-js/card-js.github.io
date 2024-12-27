@@ -15,7 +15,7 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensures the body takes up the full viewport height */
+            min-height: 100vh;
         }
 
         header {
@@ -53,7 +53,7 @@
         }
 
         .main-content {
-            flex: 1; /* Makes sure the main content fills the available space */
+            flex: 1;
             text-align: center;
             padding: 20px 20px;
         }
@@ -87,15 +87,15 @@
 
         .form-container input, .form-container textarea {
             width: 100%;
-            padding: 15px; /* Increased padding for taller inputs */
-            margin: 12px 0; /* Added margin for spacing between fields */
+            padding: 15px;
+            margin: 12px 0;
             background-color: #1e1e1e;
             color: #fff;
             border: 1px solid #333;
-            border-radius: 10px; /* More rounded corners */
+            border-radius: 10px;
             font-size: 16px;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif; /* Added font family here */
+            font-family: 'Poppins', sans-serif;
         }
 
         .cta-button {
@@ -130,7 +130,15 @@
             font-size: 14px;
             width: 100%;
             box-sizing: border-box;
-            position: relative; /* Ensure it's not absolute or fixed */
+            position: relative;
+        }
+
+        .card-info-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
     </style>
@@ -141,7 +149,7 @@
         <div class="logo">
             Card <span>JS</span>
         </div>
-        <a href="/"><button class="nav-button">Home</button></a>
+        <a href="/"><button class="nav-button">Get Card</button></a>
     </header>
 
     <div class="main-content">
@@ -149,11 +157,10 @@
         <p>Fill out the form below to create your personalized social card. It's quick, easy, and free!</p>
 
         <div class="form-container">
-            <form id="create-card-form">
-                <!-- Profile Image URL Input -->
-                <label for="profile-image">Profile Image URL:</label>
-                <input type="url" id="profile-image" name="profile-image" placeholder="Enter a direct image URL" required>
+            <!-- Card Info Header -->
+            <div class="card-info-header">Card Info</div>
 
+            <form id="create-card-form">
                 <!-- Name Input -->
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -185,13 +192,12 @@
             const formData = new FormData(event.target);
 
             // Get the form values
-            const profileImage = formData.get("profile-image");
             const name = formData.get("name");
             const bio = formData.get("bio");
             const followers = formData.get("followers");
 
             // Redirect to the /card page with the form data in the URL
-            window.location.href = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(followers)}&image=${encodeURIComponent(profileImage)}`;
+            window.location.href = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(followers)}`;
         });
     </script>
 
