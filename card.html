@@ -78,6 +78,21 @@
             color: #00b8ff;
         }
 
+        .copy-card {
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: #00b8ff;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .copy-card i {
+            margin-right: 8px; /* Space between the icon and text */
+        }
+
         footer {
             background-color: #1e1e1e;
             color: #aaa;
@@ -102,6 +117,11 @@
             <div class="followers">
                 <span id="followers-count">0</span> Followers
             </div>
+            
+            <!-- Copy Card Link -->
+            <a href="#" class="copy-card" id="copyCardLink">
+                <i>🔗</i> Copy Card
+            </a>
         </div>
     </div>
 
@@ -136,6 +156,35 @@
             const abbreviatedFollowers = abbreviateNumber(parseInt(followersCount));
             document.getElementById('followers-count').textContent = abbreviatedFollowers;
         }
+
+        // Copy current URL to clipboard
+        document.getElementById("copyCardLink").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            
+            // Create a temporary input element
+            const tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            
+            // Set the value of the input to the current URL
+            tempInput.value = window.location.href;
+            
+            // Select the input's value
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+            // Execute the "copy" command
+            document.execCommand("copy");
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Optional: Change the text of the link to "Copied!" for a short time
+            const originalText = event.target.textContent;
+            event.target.textContent = "Copied!";
+            setTimeout(() => {
+                event.target.textContent = originalText;
+            }, 2000);
+        });
     </script>
 
 </body>
