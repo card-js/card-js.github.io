@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Card - Card JS</title>
+    <title>Card JS - Social Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #121212;
@@ -14,83 +15,124 @@
             box-sizing: border-box;
         }
 
-        .main-content {
+        .logo {
+            font-size: 48px;
+            font-weight: 600;
             text-align: center;
-            padding: 40px;
+            color: #ffffff;
+            margin-top: 50px;
+        }
+
+        .logo span {
+            color: #00b8ff;
+        }
+
+        .get-own-link {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #aaaaaa;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .get-own-link:hover {
+            color: #00b8ff;
+            transition: color 0.3s;
+        }
+
+        .profile-cards-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 20px;
+            flex-wrap: wrap;
         }
 
         .profile-card {
             background-color: #2c2c2c;
-            padding: 30px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            width: 250px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .profile-card img {
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .profile-card h2 {
-            font-size: 28px;
-            font-weight: 600;
-            color: #fff;
-            margin-top: 20px;
+        .profile-card h3 {
+            font-size: 22px;
+            color: #00b8ff;
+            margin: 10px 0;
         }
 
         .profile-card p {
             font-size: 16px;
-            color: #ccc;
-            margin-top: 10px;
+            color: #aaaaaa;
         }
 
-        .profile-card .followers {
-            font-size: 18px;
-            color: #fff;
-            margin-top: 10px;
+        .followers {
+            font-size: 14px;
+            color: #aaaaaa;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .followers span {
-            color: #00b8ff; /* Electric blue */
+        .followers .count {
+            color: #00b8ff;
+            font-weight: 600;
+        }
+
+        .followers .text {
+            color: #aaaaaa;
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="main-content">
-        <div class="profile-card">
-            <!-- Profile Image -->
-            <img src="" alt="Profile Image" id="profile-img">
 
-            <!-- Name -->
-            <h2 id="profile-name"></h2>
+    <!-- Logo and Link Section -->
+    <div class="logo">
+        Card <span>JS</span>
+    </div>
+    <a href="/new" class="get-own-link">GET YOUR OWN!</a>
 
-            <!-- Bio -->
-            <p id="profile-bio"></p>
-
-            <!-- Followers -->
-            <p class="followers" id="profile-followers"><span id="followers-count"></span> Followers</p>
-        </div>
+    <!-- Profile Cards Section -->
+    <div class="profile-cards-section">
+        <!-- This will be populated by JS -->
     </div>
 
     <script>
-        // Parse URL parameters to get user data
-        const urlParams = new URLSearchParams(window.location.search);
-        const name = urlParams.get("name");
-        const bio = urlParams.get("bio");
-        const followers = urlParams.get("followers");
-        const image = urlParams.get("image");
+        // Function to extract URL parameters
+        function getURLParams(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
 
-        // Set profile data
-        document.getElementById("profile-name").textContent = name;
-        document.getElementById("profile-bio").textContent = bio;
-        document.getElementById("profile-followers").textContent = followers;
-        document.getElementById("followers-count").textContent = followers >= 1000 ? (followers / 1000).toFixed(1) + "K" : followers; // Format followers
-        document.getElementById("profile-img").src = image; // Set profile image URL
+        // Function to display profile cards based on URL parameters
+        function displayCards() {
+            const name = getURLParams('name');
+            const followers = getURLParams('followers');
+            const bio = getURLParams('bio');
+            
+            // Create the profile card HTML dynamically
+            const profileCardHTML = `
+                <div class="profile-card">
+                    <h3>${name ? name : 'Default Name'}</h3>
+                    <p>${bio ? bio : 'Default Bio'}</p>
+                    <div class="followers">
+                        <span class="count">${followers ? followers : '0'}</span><span class="text">Followers</span>
+                    </div>
+                </div>
+            `;
+
+            // Inject the generated card into the cards section
+            document.querySelector('.profile-cards-section').innerHTML = profileCardHTML;
+        }
+
+        // Run the function when the page loads
+        window.onload = displayCards;
     </script>
+
 </body>
 </html>
