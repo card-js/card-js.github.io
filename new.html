@@ -185,6 +185,17 @@
     </footer>
 
     <script>
+        // Function to abbreviate the follower count
+        function abbreviateNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M'; // For millions
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K'; // For thousands
+            } else {
+                return num; // For smaller numbers
+            }
+        }
+
         // Handle form submission
         document.getElementById("create-card-form").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
@@ -194,7 +205,10 @@
             // Get the form values
             const name = formData.get("name");
             const bio = formData.get("bio");
-            const followers = formData.get("followers");
+            let followers = formData.get("followers");
+
+            // Abbreviate the followers count
+            followers = abbreviateNumber(followers);
 
             // Redirect to the /card page with the form data in the URL
             window.location.href = `/card?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}&followers=${encodeURIComponent(followers)}`;
