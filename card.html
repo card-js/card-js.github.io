@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card JS - View Card</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Your Card - Card JS</title>
     <style>
         body {
             background-color: #121212;
@@ -15,93 +14,83 @@
             box-sizing: border-box;
         }
 
-        .container {
+        .main-content {
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px;
         }
 
-        .logo {
-            font-size: 40px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .logo span {
-            color: #00b8ff;
-        }
-
-        .card {
+        .profile-card {
             background-color: #2c2c2c;
-            border-radius: 12px;
-            width: 300px;
-            margin: 40px auto;
-            padding: 20px;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .card img {
-            width: 80px;
-            height: 80px;
+        .profile-card img {
             border-radius: 50%;
-            margin-bottom: 15px;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
         }
 
-        .card h2 {
-            font-size: 22px;
+        .profile-card h2 {
+            font-size: 28px;
             font-weight: 600;
             color: #fff;
-            margin-bottom: 10px;
+            margin-top: 20px;
         }
 
-        .card p {
+        .profile-card p {
             font-size: 16px;
-            color: #aaa;
-            margin-bottom: 15px;
+            color: #ccc;
+            margin-top: 10px;
         }
 
-        .card .followers {
-            font-size: 16px;
+        .profile-card .followers {
+            font-size: 18px;
             color: #fff;
+            margin-top: 10px;
         }
 
-        .card .followers span {
-            color: #00b8ff;
-            font-weight: 600;
+        .followers span {
+            color: #00b8ff; /* Electric blue */
         }
     </style>
 </head>
 <body>
+    <div class="main-content">
+        <div class="profile-card">
+            <!-- Profile Image -->
+            <img src="" alt="Profile Image" id="profile-img">
 
-    <div class="container">
-        <div class="logo">
-            Card <span>JS</span>
-        </div>
+            <!-- Name -->
+            <h2 id="profile-name"></h2>
 
-        <div class="card" id="profile-card">
-            <!-- Card content will be populated here -->
+            <!-- Bio -->
+            <p id="profile-bio"></p>
+
+            <!-- Followers -->
+            <p class="followers" id="profile-followers"><span id="followers-count"></span> Followers</p>
         </div>
     </div>
 
     <script>
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
+        // Parse URL parameters to get user data
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get("name");
+        const bio = urlParams.get("bio");
+        const followers = urlParams.get("followers");
+        const image = urlParams.get("image");
 
-            let name = urlParams.get('name');
-            let bio = urlParams.get('bio');
-            let followers = urlParams.get('followers');
-            let image = urlParams.get('image');
-
-            let card = document.getElementById('profile-card');
-
-            // Create the profile card
-            card.innerHTML = `
-                <img src="${image}" alt="Profile Picture">
-                <h2>${name}</h2>
-                <p>${bio}</p>
-                <p class="followers"><span>${followers}</span></p>
-            `;
-        };
+        // Set profile data
+        document.getElementById("profile-name").textContent = name;
+        document.getElementById("profile-bio").textContent = bio;
+        document.getElementById("profile-followers").textContent = followers;
+        document.getElementById("followers-count").textContent = followers >= 1000 ? (followers / 1000).toFixed(1) + "K" : followers; // Format followers
+        document.getElementById("profile-img").src = image; // Set profile image URL
     </script>
-
 </body>
 </html>
