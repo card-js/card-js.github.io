@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card JS - View Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .logo {
+            font-size: 40px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #00b8ff;
+        }
+
+        .card {
+            background-color: #2c2c2c;
+            border-radius: 12px;
+            width: 300px;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .card .followers {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .card .followers span {
+            color: #00b8ff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            Card <span>JS</span>
+        </div>
+
+        <div class="card" id="profile-card">
+            <!-- Card content will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            let name = urlParams.get('name');
+            let bio = urlParams.get('bio');
+            let followers = urlParams.get('followers');
+            let image = urlParams.get('image');
+
+            let card = document.getElementById('profile-card');
+
+            // Create the profile card
+            card.innerHTML = `
+                <img src="${image}" alt="Profile Picture">
+                <h2>${name}</h2>
+                <p>${bio}</p>
+                <p class="followers"><span>${followers}</span></p>
+            `;
+        };
+    </script>
+
+</body>
+</html>

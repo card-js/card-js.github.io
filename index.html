@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card JS - Social Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Ensure box-sizing is set for better control */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+        }
+
+        header .logo {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        header .logo span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        header .nav-button {
+            background-color: #00b8ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600; /* Make button text a bit bolder */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        header .nav-button:hover {
+            background-color: #0093cc;
+        }
+
+        .counter-section {
+            text-align: center;
+            padding: 20px;
+            margin: 0 auto; /* Center the counter */
+        }
+
+        .counter-section h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .counter-section h2 span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        .counter {
+            font-size: 40px;
+            color: #ffffff;
+            font-weight: 600;
+            word-wrap: break-word; /* Ensure long numbers break if necessary */
+            margin-bottom: 10px;
+        }
+
+        .counter .plus {
+            color: #00b8ff; /* Electric blue for the "+" */
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .main-content h1 {
+            font-size: 60px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .main-content h1 span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        .main-content p {
+            font-size: 20px;
+            color: #aaaaaa;
+        }
+
+        .cta-button {
+            background-color: #00b8ff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600; /* Make button text bold */
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0093cc;
+        }
+
+        .cta-text {
+            font-size: 12px;
+            color: #aaaaaa;
+            margin-top: 10px;
+        }
+
+        .profile-cards-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 20px;
+            flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+        }
+
+        .profile-card {
+            background-color: #2c2c2c;
+            width: 250px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .profile-card h3 {
+            font-size: 22px;
+            color: #00b8ff;
+            margin: 10px 0;
+        }
+
+        .profile-card p {
+            font-size: 16px;
+            color: #aaaaaa;
+        }
+
+        .followers {
+            font-size: 14px;
+            color: #aaaaaa;
+            margin-top: 10px;
+        }
+
+        .profile-card .followers span {
+            color: #00b8ff;
+        }
+
+        .cards-header {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cards-header h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .cards-header h2 span {
+            color: #00b8ff; /* Electric blue */
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: #aaa;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            Card <span>JS</span>
+        </div>
+        <a href="/new"><button class="nav-button">Generate Card</button></a>
+    </header>
+
+    <!-- Main Content First -->
+    <div class="main-content">
+        <h1>Welcome to <span>Card JS</span></h1>
+        <p>Create stunning social cards with ease—completely free! Whether you're a professional, a creator, or a business, Card JS provides the best solution for generating social cards with style. Get started today and join thousands of satisfied users.</p>
+        <a href="/new"><button class="cta-button">Get Started</button></a>
+        <div class="cta-text">No payment required*</div>
+    </div>
+
+    <!-- Our Cards Section -->
+    <div class="cards-header">
+        <h2>Our <span>Cards</span></h2>
+    </div>
+
+    <div class="profile-cards-section">
+        <div class="profile-card">
+            <img src="pfp1.jpeg" alt="Profile Picture 1">
+            <h3>John Doe</h3>
+            <p>Creative Designer</p>
+            <div class="followers">
+                <span>1.2K</span> Followers
+            </div>
+        </div>
+        <div class="profile-card">
+            <img src="pfp2.jpeg" alt="Profile Picture 2">
+            <h3>Jane Smith</h3>
+            <p>Marketing Expert</p>
+            <div class="followers">
+                <span>3.8K</span> Followers
+            </div>
+        </div>
+        <div class="profile-card">
+            <img src="pfp3.jpeg" alt="Profile Picture 3">
+            <h3>Samuel Lee</h3>
+            <p>Product Manager</p>
+            <div class="followers">
+                <span>2.1K</span> Followers
+            </div>
+        </div>
+    </div>
+
+    <!-- Counter Section at the Bottom -->
+    <div class="counter-section">
+        <h2>Cards <span>Created</span></h2>
+        <div class="counter" id="clientCounter">100,000<span class="plus">+</span></div>
+    </div>
+
+    <footer>
+        &copy; 2024 Card JS. All rights reserved.
+    </footer>
+
+    <script>
+        // Simple counter animation for the satisfied clients
+        let counter = document.getElementById('clientCounter');
+        let count = 100000; // Set to 100K+
+        const target = 100000; // Example satisfied client target
+        const speed = 30; // Speed of the count animation
+
+        function incrementCounter() {
+            if (count < target) {
+                count++;
+                counter.textContent = count + "+";  // Keep the "+" in the correct format
+                setTimeout(incrementCounter, speed);
+            }
+        }
+
+        // Start counter animation when the page loads
+        window.onload = function() {
+            incrementCounter();
+        };
+    </script>
+
+</body>
+</html>
